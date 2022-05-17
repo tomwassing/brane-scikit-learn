@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 import base64
+from cgitb import reset
 import os
 import sys
 import yaml
+import io
 from sklearn.decomposition import PCA
+from sklearn import datasets
+
+import numpy as np
 
 def decode(s: str) -> str:
   s = s.replace("\n", "")
@@ -18,9 +23,28 @@ def encode(s: str) -> str:
 if __name__ == "__main__":
   command = sys.argv[1]
   argument = os.environ["INPUT"]
-  functions = {
-    "decode": decode,
-    "encode": encode,
-  }
-  output = functions[command](argument)
-  print(yaml.dump({"output": output, "test": PCA(n_components=3).fit_transform([])}))
+
+  if command == "iris":
+    iris = datasets.load_iris()
+    fake_file = io.StringIO()
+    np.savetxt(fake_file, iris.data)
+    # print(yaml.dump({"output": fake_file.getvalue()}))
+  else:
+    # TODO: replace with INPUT
+    iris = datasets.load_iris()
+    fake_file = io.StringIO()
+    np.savetxt(fake_file, iris.data)
+    fake_file2 = io.StringIO(fake_file.getvalue())
+    data = np.loadtxt(fake_file2)
+
+    # print(data)
+
+    pca  = PCA(n_components=2)
+    method = getattr(pca, command)
+    result = method(data)
+
+    fake_file = io.StringIO()
+    np.savetxt(fake_file, result)
+    # print(result)
+
+    print(yaml.dump({"output": fake_file.getvalue()}))
