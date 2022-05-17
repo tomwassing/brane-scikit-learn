@@ -1,0 +1,37 @@
+name: base64
+version: 1.0.0
+kind: ecu
+
+dependencies:
+  - python3
+  - python3-yaml
+
+files:
+  - run.py
+
+entrypoint:
+  kind: task
+  exec: run.py
+
+actions:
+  'decode':
+    command:
+      args:
+        - decode
+    input:
+      - type: string
+        name: input
+    output:
+      - type: string
+        name: output
+
+  'encode':
+    command:
+      args:
+        - encode     
+    input:
+      - type: string
+        name: input
+    output:
+      - type: string
+        name: output
