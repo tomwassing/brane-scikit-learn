@@ -3,6 +3,7 @@ import base64
 import os
 import sys
 import yaml
+from sklearn.decomposition import PCA
 
 def decode(s: str) -> str:
   s = s.replace("\n", "")
@@ -22,4 +23,4 @@ if __name__ == "__main__":
     "encode": encode,
   }
   output = functions[command](argument)
-  print(yaml.dump({"output": output}))
+  print(yaml.dump({"output": output, "test": PCA(n_components=3).fit_transform([])}))
