@@ -12,52 +12,46 @@ import ast
 import numpy as np
 
 
-if __name__ == "__main__":
+def main():
   command = sys.argv[1]
   input_data = os.environ["INPUT"]
-  n_components = os.environ.get("N_COMPONENTS")
+  iris = os.environ.get("IRIS")
 
-# if command == "iris":
-  iris = datasets.load_iris()
-  fake_file = io.StringIO()
-  np.savetxt(fake_file, iris.data)
-  input_data = fake_file.getvalue()
+  # toggle to use iris dataset as test data
+  if iris:
+    iris = datasets.load_iris()
+    fake_file = io.StringIO()
+    np.savetxt(fake_file, iris.data)
+    input_data = fake_file.getvalue()
 
-  input_data = iris.data
-
-#   # print(yaml.dump({"output": fake_file.getvalue()}))
-# else:
-#   # TODO: replace with INPUT
-#   iris = datasets.load_iris()
-#   fake_file = io.StringIO()
-#   np.savetxt(fake_file, iris.data)
-#   fake_file2 = io.StringIO(fake_file.getvalue())
-#   data = np.loadtxt(fake_file2)
-
-  # print(data)
-
+  data = np.loadtxt(io.StringIO(input_data))
   args = dict()
   signature = inspect.signature(PCA.__init__)
 
+  # dynamically resolve arguments for PCA constructor
   for param in signature.parameters:
+      # ignore self from constructor
       if param == "self":
         continue
+
+      # try to parse the value from the environment with correct type
       value = os.environ.get(param.upper())
       if value is not None:
         try:
           args[param] = ast.literal_eval(value)
         except:
           args[param] = value
-  # print(args)
-  # print(**args)
 
+  # exectue pca method
   pca = PCA(**args)
-  print(input_data)
   method = getattr(pca, command)
-  result = method(input_data)
+  result = method(data)
 
+  # redirect result to stdout
   fake_file = io.StringIO()
   np.savetxt(fake_file, result)
-  # print(result)
-
+  # print(len(result))
   print(yaml.dump({"output": fake_file.getvalue()}))
+
+if __name__ == "__main__":
+  main()

@@ -15,7 +15,7 @@ entrypoint:
   exec: run.py
 
 actions:
-  'fit':
+  'fit_transform':
     # command:
     #   args:
     #     - pca
@@ -26,6 +26,22 @@ actions:
       - type: string
         name: n_components
         required: true
+      - type: string
+        name: copy
+      - type: string
+        name: whiten
+      - type: string
+        name: svd_solver
+      - type: string
+        name: tol
+      - type: string
+        name: iterated_power
+      - type: string
+        name: n_oversamples
+      - type: string
+        name: power_iteration_normalizer
+      - type: string
+        name: random_state
     output:
       - type: string
         name: output
