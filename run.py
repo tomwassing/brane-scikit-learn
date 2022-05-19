@@ -14,7 +14,7 @@ import numpy as np
 
 def main():
   command = sys.argv[1]
-  input_data = os.environ["INPUT"]
+  input_data = os.environ.get("INPUT")
   iris = os.environ.get("IRIS")
 
   # toggle to use iris dataset as test data

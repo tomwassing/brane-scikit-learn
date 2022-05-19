@@ -1,0 +1,29 @@
+name: matplotlib
+version: 1.0.0
+kind: ecu
+
+dependencies:
+  - python3
+  - python3-yaml
+  - python3-matplotlib
+
+files:
+  - plot.py
+
+entrypoint:
+  kind: task
+  exec: plot.py
+
+actions:
+  'plot':
+    command:
+      args:
+        - plot
+    input:
+      - type: string
+        name: input
+        required: true
+        # todo: add filename/type of plot/.png/.pdf/.svg , axis names, title, legend, xticks, yticks, etc.
+    output:
+      - type: string
+        name: output

@@ -16,9 +16,9 @@ entrypoint:
 
 actions:
   'fit_transform':
-    # command:
-    #   args:
-    #     - pca
+    command:
+      args:
+        - fit_transform
     input:
       - type: string
         name: input
@@ -26,22 +26,23 @@ actions:
       - type: string
         name: n_components
         required: true
-      - type: string
-        name: copy
-      - type: string
-        name: whiten
-      - type: string
-        name: svd_solver
-      - type: string
-        name: tol
-      - type: string
-        name: iterated_power
-      - type: string
-        name: n_oversamples
-      - type: string
-        name: power_iteration_normalizer
-      - type: string
-        name: random_state
+      # - type: string
+      #   name: copy
+      #   required: false
+      # - type: string
+      #   name: whiten
+      # - type: string
+      #   name: svd_solver
+      # - type: string
+      #   name: tol
+      # - type: string
+      #   name: iterated_power
+      # - type: string
+      #   name: n_oversamples
+      # - type: string
+      #   name: power_iteration_normalizer
+      # - type: string
+      #   name: random_state
     output:
       - type: string
         name: output
