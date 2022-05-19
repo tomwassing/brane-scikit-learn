@@ -1,4 +1,4 @@
-name: base64
+name: sklearn
 version: 1.0.0
 kind: ecu
 
@@ -15,24 +15,17 @@ entrypoint:
   exec: run.py
 
 actions:
-  'decode':
-    command:
-      args:
-        - decode
+  'fit':
+    # command:
+    #   args:
+    #     - pca
     input:
       - type: string
         name: input
-    output:
+        required: true
       - type: string
-        name: output
-
-  'encode':
-    command:
-      args:
-        - encode     
-    input:
-      - type: string
-        name: input
+        name: n_components
+        required: true
     output:
       - type: string
         name: output
