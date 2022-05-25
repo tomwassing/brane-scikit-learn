@@ -60,4 +60,4 @@ jobs:
       # Run the tests.
       - name: Test with pytest
         run: |
-          pytest --function=fit_transform
+          pytest
