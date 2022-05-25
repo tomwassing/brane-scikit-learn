@@ -28,7 +28,7 @@ jobs:
     # The tests are compatible with Python 3.8 - 3.10.
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.8"]
 
     # Here we can iterate the steps that we need to take to release the latest
     # changes.
