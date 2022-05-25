@@ -25,10 +25,10 @@ jobs:
     # run these commands on Ubuntu
     runs-on: ubuntu-latest
 
-    # The tests are compatible with Python 3.6 - 3.9.
+    # The tests are compatible with Python 3.6 - 3.10.
     strategy:
       matrix:
-        python-version: ["3.6", "3.7", "3.8", "3.9"]
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
 
     # Here we can iterate the steps that we need to take to release the latest
     # changes.
