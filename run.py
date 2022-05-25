@@ -12,8 +12,7 @@ import ast
 import numpy as np
 
 
-def main():
-  command = sys.argv[1]
+def main(function_name):
   input_data = os.environ.get("INPUT")
   iris = os.environ.get("IRIS")
 
@@ -44,14 +43,20 @@ def main():
 
   # exectue pca method
   pca = PCA(**args)
-  method = getattr(pca, command)
+  method = getattr(pca, function_name)
   result = method(data)
 
   # redirect result to stdout
   fake_file = io.StringIO()
   np.savetxt(fake_file, result)
   # print(len(result))
-  print(yaml.dump({"output": fake_file.getvalue()}))
+  result = (yaml.dump({"output": fake_file.getvalue()}))
+  print(result)
+  return result
+
 
 if __name__ == "__main__":
-  main()
+    function_name = sys.argv[1]
+    input_data = os.environ.get("INPUT")
+    iris = os.environ.get("IRIS")
+    main(function_name)
