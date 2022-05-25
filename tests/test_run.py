@@ -1,7 +1,6 @@
 
 import os
 import sys
-sys.path.insert(0,'..')
 from run import main
 
 def test_random_nparray():
