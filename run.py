@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
-import base64
-from cgitb import reset
 import os
 import sys
 import yaml
-import io
 import inspect
 import ast
 import numpy as np
@@ -34,10 +31,8 @@ def get_dynamic_args(func):
   return args
 
 def pca_fit_transform(data):
-  # dynamically resolve arguments for PCA constructor
   args = get_dynamic_args(PCA.__init__)
-  pca = PCA(**args)
-  return pca.fit_transform(data)
+  return PCA(**args).fit_transform(data)
 
 def normalize(data):
   return preprocessing.normalize(data)
