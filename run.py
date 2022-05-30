@@ -75,11 +75,11 @@ def main(function_name):
 
     raw_output = json.dumps(result.tolist())
     yaml_output = yaml.dump({"output": raw_output})
-    print(yaml_output)
     return yaml_output
 
 
 if __name__ == "__main__":
     function_name = sys.argv[1]
     input_data = os.environ.get("INPUT")
-    main(function_name)
+    output = main(function_name)
+    print(output)
