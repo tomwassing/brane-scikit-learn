@@ -6,16 +6,17 @@ import sys
 import yaml
 import io
 import inspect
-from sklearn.decomposition import PCA
-from sklearn import datasets, preprocessing
 import ast
 import numpy as np
 import json
 
-def pca_fit_transform(data):
-  # dynamically resolve arguments for PCA constructor
+from sklearn.decomposition import PCA
+from sklearn import datasets, preprocessing
+from sklearn.impute import SimpleImputer
+
+def get_dynamic_args(func):
   args = dict()
-  signature = inspect.signature(PCA.__init__)
+  signature = inspect.signature(func)
 
   for param in signature.parameters:
       # ignore self from constructor
@@ -30,12 +31,20 @@ def pca_fit_transform(data):
         except:
           args[param] = value
 
-  # exectue pca method
+  return args
+
+def pca_fit_transform(data):
+  # dynamically resolve arguments for PCA constructor
+  args = get_dynamic_args(PCA.__init__)
   pca = PCA(**args)
   return pca.fit_transform(data)
 
 def normalize(data):
   return preprocessing.normalize(data)
+
+def simple_imputer(data):
+  args = get_dynamic_args(SimpleImputer.__init__)
+  return SimpleImputer(**args).fit_transform(data)
 
 def main(function_name):
   input_data = os.environ.get("INPUT")
@@ -54,6 +63,8 @@ def main(function_name):
     result = pca_fit_transform(data)
   elif function_name == "normalize":
     result = normalize(data)
+  elif function_name == "simple_imputer":
+    result = simple_imputer(data)
   else:
     print("Unknown function: %s" % function_name)
     sys.exit(1)
