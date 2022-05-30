@@ -55,8 +55,11 @@ def simple_imputer(data):
 def main(function_name):
     # reading input data
     input_data = os.environ.get("INPUT")
-    raw_data = json.loads(input_data)
-    data = np.array(raw_data)
+    data = None
+
+    if input_data is not None:
+        raw_data = json.loads(input_data)
+        data = np.array(raw_data)
 
     if function_name.startswith("load_"):
         result = load_dataset(function_name)

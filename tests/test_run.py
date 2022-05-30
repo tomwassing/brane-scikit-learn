@@ -56,7 +56,7 @@ def test_simple_imputer():
 
 
 def test_load_dataset():
-    output = read_output(main("load_boston"))
-    expected_output = datasets.load_boston().data
+    output = read_output(main("load_iris"))
+    expected_output = datasets.load_iris().data
 
     assert (output == expected_output).all()
