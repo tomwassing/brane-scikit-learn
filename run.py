@@ -57,7 +57,7 @@ def main(function_name):
     input_data = os.environ.get("INPUT")
     data = None
 
-    if input_data is not None:
+    if not input_data:
         raw_data = json.loads(input_data)
         data = np.array(raw_data)
 
