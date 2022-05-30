@@ -15,15 +15,30 @@ entrypoint:
   exec: plot.py
 
 actions:
-  'plot':
+
+  'plot_base64':
     command:
       args:
-        - plot
+        - plot_base64
     input:
       - type: string
         name: input
         required: true
-        # todo: add filename/type of plot/.png/.pdf/.svg , axis names, title, legend, xticks, yticks, etc.
+    output:
+      - type: string
+        name: output
+
+  'plot_file':
+    command:
+      args:
+        - plot_file
+    input:
+      - type: string
+        name: input
+        required: true
+      - type: string
+        name: file_path
+        required: true
     output:
       - type: string
         name: output
