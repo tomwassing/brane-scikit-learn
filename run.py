@@ -12,7 +12,6 @@ from sklearn.decomposition import PCA
 from sklearn import datasets, preprocessing
 from sklearn.impute import SimpleImputer
 
-
 def get_dynamic_args(func):
   args = dict()
   signature = inspect.signature(func)
@@ -48,9 +47,8 @@ def simple_imputer(data):
   return SimpleImputer(**args).fit_transform(data)
 
 def main(function_name):
-  input_data = os.environ.get("INPUT")
-
   # reading input data
+  input_data = os.environ.get("INPUT")
   raw_data = json.loads(input_data)
   data = np.array(raw_data)
 
@@ -71,7 +69,6 @@ def main(function_name):
 
 
 if __name__ == "__main__":
-    function_name = sys.argv[1]
-    input_data = os.environ.get("INPUT")
-    iris = os.environ.get("IRIS")
-    main(function_name)
+  function_name = sys.argv[1]
+  input_data = os.environ.get("INPUT")
+  main(function_name)
