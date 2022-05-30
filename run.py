@@ -11,6 +11,7 @@ from sklearn.decomposition import PCA
 from sklearn import datasets, preprocessing
 from sklearn.impute import SimpleImputer
 
+
 def get_dynamic_args(func):
   args = dict()
   signature = inspect.signature(func)
@@ -30,6 +31,10 @@ def get_dynamic_args(func):
 
   return args
 
+def load_dataset(name):
+  load_dataset_func = getattr(datasets, name)
+  return load_dataset_func().data
+
 def pca_fit_transform(data):
   args = get_dynamic_args(PCA.__init__)
   return PCA(**args).fit_transform(data)
@@ -43,18 +48,14 @@ def simple_imputer(data):
 
 def main(function_name):
   input_data = os.environ.get("INPUT")
-  iris = os.environ.get("IRIS")
-
-  # toggle to use iris dataset as test data
-  if iris:
-    iris = datasets.load_iris()
-    input_data = json.dumps(iris.data.tolist())
 
   # reading input data
   raw_data = json.loads(input_data)
   data = np.array(raw_data)
 
-  if function_name == "pca_fit_transform":
+  if function_name.startswith("load_"):
+    result = load_dataset(function_name)
+  elif function_name == "pca_fit_transform":
     result = pca_fit_transform(data)
   elif function_name == "normalize":
     result = normalize(data)

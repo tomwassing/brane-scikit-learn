@@ -8,6 +8,7 @@ from run import main
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import normalize
 from sklearn.impute import SimpleImputer
+from sklearn import datasets
 
 def read_output(output):
     yaml_output = yaml.safe_load(output)
@@ -48,3 +49,8 @@ def test_simple_imputer():
 
     assert (output == expected_output).all()
 
+def test_load_dataset():
+    output = read_output(main("load_boston"))
+    expected_output = datasets.load_boston().data
+
+    assert (output == expected_output).all()
