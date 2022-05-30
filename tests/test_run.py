@@ -9,7 +9,6 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import normalize
 from sklearn.impute import SimpleImputer
 
-
 def read_output(output):
     yaml_output = yaml.safe_load(output)
     output_data = np.array(json.loads(yaml_output["output"]))
@@ -36,6 +35,8 @@ def test_normalize():
 
 def test_simple_imputer():
     test_data = np.random.rand(25, 25)
+
+    # Add missing values
     random_index = np.random.choice(test_data.size, 10, replace=False)
     test_data.ravel()[random_index] = np.nan
 
