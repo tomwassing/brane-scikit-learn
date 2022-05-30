@@ -93,10 +93,6 @@ actions:
     command:
       args:
         - load_iris
-    input:
-      - type: string
-        name: input
-        required: true
     output:
       - type: string
         name: output
