@@ -18,14 +18,13 @@ brane import wscs-2022/sklearn
 
 ## Usage
 
-```sh
 | Variable Name                                                                              | Input (Data)                                                                               | Output (Data)    | Description                                                                                               |
 |--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------|
 |  pca_fit_transform                                                                         | Input (string) N_components (string)                                                       |  Output (string) | Performs PCA on the provided data and returns the transformed data.                                       |
-| normalize                                                                                  | Input (string)                                                                             | Output (string)  | Scales input vectors individually to unit form                                                            |
-|   simple_inputer                                                                           |  Input (string) strategy (string) fill_value (string)                                      |   Output string  | Function provides ways of dealing with various  missing values, uses the  strategy specified by the user. |
+|  normalize                                                                                  | Input (string)                                                                             | Output (string)  | Scales input vectors individually to unit form                                                            |
+| simple_inputer                                                                           |  Input (string) strategy (string) fill_value (string)                                      |   Output string  | Function provides ways of dealing with various  missing values, uses the  strategy specified by the user. |
 | load_boston load_iris load_diabetes load_digits load_linnerud load_wine load_breast_cancer | load_boston load_iris load_diabetes load_digits load_linnerud load_wine load_breast_cancer |    Output string |   Provides acces to the various stable datasets  provided by scikit-learn.                                |
-```
+
 
 ## Run tests
 
