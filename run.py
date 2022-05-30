@@ -74,8 +74,7 @@ def main(function_name):
         sys.exit(1)
 
     raw_output = json.dumps(result.tolist())
-    yaml_output = yaml.dump({"output": raw_output})
-    return yaml_output
+    return yaml.dump({"output": raw_output})
 
 
 if __name__ == "__main__":
