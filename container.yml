@@ -15,10 +15,12 @@ entrypoint:
   exec: run.py
 
 actions:
-  'fit_transform':
+
+# https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html
+  'pca_fit_transform':
     command:
       args:
-        - fit_transform
+        - pca_fit_transform
     input:
       - type: string
         name: input
@@ -43,6 +45,89 @@ actions:
       #   name: power_iteration_normalizer
       # - type: string
       #   name: random_state
+    output:
+      - type: string
+        name: output
+
+# https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.normalize.html
+  'normalize':
+    command:
+      args:
+        - normalize
+    input:
+      - type: string
+        name: input
+        required: true
+    output:
+      - type: string
+        name: output
+
+# https://scikit-learn.org/stable/modules/generated/sklearn.impute.SimpleImputer.html
+  'simple_imputer':
+    command:
+      args:
+        - simple_imputer
+    input:
+      - type: string
+        name: input
+        required: true
+      - type: string
+        name: strategy
+        required: true
+      - type: string
+        name: fill_value
+        required: false
+    output:
+      - type: string
+        name: output
+
+# https://scikit-learn.org/stable/datasets/toy_dataset.html
+  'load_boston':
+    command:
+      args:
+        - load_boston
+    output:
+      - type: string
+        name: output
+  'load_iris':
+    command:
+      args:
+        - load_iris
+    output:
+      - type: string
+        name: output
+  'load_diabetes':
+    command:
+      args:
+        - load_diabetes
+    output:
+      - type: string
+        name: output
+  'load_digits':
+    command:
+      args:
+        - load_digits
+    output:
+      - type: string
+        name: output
+  'load_linnerud':
+    command:
+      args:
+        - load_linnerud
+    output:
+      - type: string
+        name: output
+  'load_wine':
+    command:
+      args:
+        - load_wine
+    output:
+      - type: string
+        name: output
+  'load_breast_cancer':
+    command:
+      args:
+        - load_breast_cancer
     output:
       - type: string
         name: output
