@@ -7,27 +7,16 @@ import yaml
 import io
 import inspect
 from sklearn.decomposition import PCA
-from sklearn import datasets
+from sklearn import datasets, preprocessing
 import ast
 import numpy as np
+import json
 
-
-def main(function_name):
-  input_data = os.environ.get("INPUT")
-  iris = os.environ.get("IRIS")
-
-  # toggle to use iris dataset as test data
-  if iris:
-    iris = datasets.load_iris()
-    fake_file = io.StringIO()
-    np.savetxt(fake_file, iris.data)
-    input_data = fake_file.getvalue()
-
-  data = np.loadtxt(io.StringIO(input_data))
+def pca_fit_transform(data):
+  # dynamically resolve arguments for PCA constructor
   args = dict()
   signature = inspect.signature(PCA.__init__)
 
-  # dynamically resolve arguments for PCA constructor
   for param in signature.parameters:
       # ignore self from constructor
       if param == "self":
@@ -43,16 +32,34 @@ def main(function_name):
 
   # exectue pca method
   pca = PCA(**args)
-  method = getattr(pca, function_name)
-  result = method(data)
+  return pca.fit_transform(data)
 
-  # redirect result to stdout
-  fake_file = io.StringIO()
-  np.savetxt(fake_file, result)
-  # print(len(result))
-  result = (yaml.dump({"output": fake_file.getvalue()}))
-  print(result)
-  return result
+def normalize(data):
+  return preprocessing.normalize(data)
+
+def main(function_name):
+  input_data = os.environ.get("INPUT")
+  iris = os.environ.get("IRIS")
+
+  # toggle to use iris dataset as test data
+  if iris:
+    iris = datasets.load_iris()
+    input_data = json.dumps(iris.data.tolist())
+
+  # reading input data
+  raw_data = json.loads(input_data)
+  data = np.array(raw_data)
+
+  if function_name == "pca_fit_transform":
+    result = pca_fit_transform(data)
+  elif function_name == "normalize":
+    result = normalize(data)
+  else:
+    print("Unknown function: %s" % function_name)
+    sys.exit(1)
+
+  raw_output = json.dumps(result.tolist())
+  return yaml.dump({"output": raw_output})
 
 
 if __name__ == "__main__":
