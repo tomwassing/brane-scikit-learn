@@ -86,6 +86,9 @@ actions:
     command:
       args:
         - load_boston
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
@@ -93,6 +96,9 @@ actions:
     command:
       args:
         - load_iris
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
@@ -100,6 +106,9 @@ actions:
     command:
       args:
         - load_diabetes
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
@@ -107,6 +116,9 @@ actions:
     command:
       args:
         - load_digits
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
@@ -114,6 +126,9 @@ actions:
     command:
       args:
         - load_linnerud
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
@@ -121,6 +136,9 @@ actions:
     command:
       args:
         - load_wine
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
@@ -128,6 +146,9 @@ actions:
     command:
       args:
         - load_breast_cancer
+    input:
+      - type: string
+        name: data
     output:
       - type: string
         name: output
