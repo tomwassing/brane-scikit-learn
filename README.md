@@ -15,7 +15,6 @@ brane import tomwassing/brane-scikit-learn
 ## Requirements
 - Scikit-learn
 - Yaml
-- JSON
 - numpy
 
 ## Usage
