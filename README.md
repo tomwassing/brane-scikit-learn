@@ -13,7 +13,7 @@
 ## Install
 
 ```sh
-brane import wscs-2022/sklearn
+brane import tomwassing/brane-scikit-learn
 ```
 
 ## Usage
