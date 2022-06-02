@@ -11,7 +11,7 @@
 ##############################################################################
 
 # Name this Github Action.
-name: Test Sklearn
+name: Test brane-scikit-learn
 
 # Here we can define when we want this action to happen. We currently want this
 # specific action to run when changes are pushed.
