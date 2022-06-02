@@ -6,9 +6,8 @@
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
   </a>
-  [![example workflow](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml/badge.svg)](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml)
 </p>
-
+[![example workflow](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml/badge.svg)](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml)
 > This repository contains a package for BRANE that runs multiple functions from the SciKit libary.
 
 ## Install
