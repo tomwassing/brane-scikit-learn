@@ -1,7 +1,7 @@
 
 <!-- Add a image to the readme -->
 <img src="img/logo-braneskit.png" alt="SciKit logo" width="200"/>
-<h1>Welcome to Brane Scikit-learn 👋</h1>
+<h1>Welcome to the Brane Scikit-learn package 👋</h1>
 
 [![example workflow](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml/badge.svg)](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml)
 
