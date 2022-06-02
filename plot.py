@@ -7,7 +7,6 @@ import io
 import json
 import matplotlib.pyplot as plt
 import numpy as np
-import sklearn.datasets
 
 
 def read_np_array(key):
@@ -16,6 +15,7 @@ def read_np_array(key):
         return None
 
     return np.array(json.loads(os_data))
+
 
 def main(command):
     # reading input data
@@ -26,7 +26,8 @@ def main(command):
     edge_color = os.environ.get("EDGE_COLOR")
 
     if os.environ.get("SCATTER", False):
-        plt.scatter(data[:, 0], data[:, 1], c=cmap_data, cmap=cmap_name, edgecolor=edge_color)
+        plt.scatter(data[:, 0], data[:, 1], c=cmap_data,
+                    cmap=cmap_name, edgecolor=edge_color)
     else:
         plt.plot(data)
 
