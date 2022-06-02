@@ -4,6 +4,7 @@
 <h1>Welcome to the Brane Scikit-learn package 👋</h1>
 
 [![example workflow](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml/badge.svg)](https://github.com/tomwassing/brane-scikit-learn/actions/workflows/test.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6607108.svg)](https://doi.org/10.5281/zenodo.6607108)
 
 This repository contains a package for BRANE that runs multiple functions from the SciKit libary.
 ## Install
