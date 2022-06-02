@@ -39,7 +39,7 @@ brane import tomwassing/brane-scikit-learn
 python3 -m pytest
 ```
 
-## Author
+## Authors
 
 👤 **Jurre J. Brandsen, Sander J. Misdorp, Tom J. Wassing**
 
