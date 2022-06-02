@@ -33,9 +33,10 @@ def get_dynamic_args(func):
     return args
 
 
-def load_dataset(name):
+def load_dataset(name, attr):
     load_dataset_func = getattr(datasets, name)
-    return load_dataset_func().data
+    dataset = load_dataset_func()
+    return getattr(dataset, attr)
 
 
 def pca_fit_transform(data):
@@ -62,7 +63,8 @@ def main(function_name):
         data = np.array(raw_data)
 
     if function_name.startswith("load_"):
-        result = load_dataset(function_name)
+        data = os.getenv("DATA", "data")
+        result = load_dataset(function_name, data)
     elif function_name == "pca_fit_transform":
         result = pca_fit_transform(data)
     elif function_name == "normalize":
